@@ -34,7 +34,8 @@ import styles from './styles/main.styl'
 
 window.app = {
     init() {
-        this.router = new Router();
+        this.router = new Router();  //could do new Router({pushState:
+        // false}) to not update url bar
         this.router.history.start(); //this makes it grab the browser history
     }
 };
