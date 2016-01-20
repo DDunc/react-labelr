@@ -1,8 +1,12 @@
 import React from 'react'
 import localLinks from 'local-links'
+//note that this is now the same app required in on app, ie, it's actively
+// modified
+import app from 'ampersand-app'
+
 
 export default React.createClass({
-    displayName: "linker",
+    displayName: "nav helper",
 
     onClick(event) {
         const pathname = localLinks.getLocalPathname(event);
@@ -10,7 +14,11 @@ export default React.createClass({
         if (pathname) {
             console.log("pathname, no refresh");
             event.preventDefault();
-            //don't put the global in this file
+            //same as ee 'emit' event
+            //note that there is an "all" string, but all others are
+            // socket.io style matched strings, don't overuse or you'll make
+            // a mess.
+            app.trigger('local', {some: 'data'});
             app.router.history.navigate(pathname);
         }
     }, //remember this is a key-value pair inside of an object
@@ -26,3 +34,4 @@ export default React.createClass({
 
 //...this.props says any properties set on the navhelper will be passed and
 // applied here.
+//this.props will override things declared before it.

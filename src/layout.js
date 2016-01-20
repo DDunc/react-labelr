@@ -1,7 +1,7 @@
 import React from 'react'
 import localLinks from 'local-links'
 import NavHelper from './components/nav-helper'
-
+// TODO I need to finish this tutorial
 //ampersand does the routes, local-links figures out where in the target it was
 //router.history.navigate... understand how this works
 export default React.createClass({
