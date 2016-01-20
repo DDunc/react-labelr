@@ -1,6 +1,8 @@
 import Router from 'ampersand-router'
 import React from 'react'
 import qs from 'qs'
+//xhr works like request, dope
+import xhr from 'xhr'
 import PublicPage from './pages/public'
 import ReposPage from './pages/repos'
 import Layout from './layout.js'
@@ -50,6 +52,13 @@ export default Router.extend({
     // have the code
     authCallback(query) {
         query = qs.parse(query);
-        console.log(query);
+        //console.log(query.code);
+        //fucking more heroku bullshit
+        xhr({
+            url: 'https://gatekept-localhost.herokuapp.com/authenticate/' + query.code,
+            json: true
+        }, (err, req, body) => {
+            console.log(err, body)
+        })
     }
 })
