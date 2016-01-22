@@ -18,10 +18,12 @@ export default Router.extend({
     },
 
     //colon: works like express
+    //remember, routes have to be on the routes key or they won't be used
     routes: {
         '': 'public',  //these can be functions
         'repos': 'repos',
         'login': 'login',
+        'logout': 'logout',
         'auth/callback?:query': 'authCallback'
     },
 
@@ -53,8 +55,7 @@ export default Router.extend({
     // have the code
     authCallback(query) {
         query = qs.parse(query);
-        //console.log(query.code);
-        //fucking more heroku bullshit
+        //console.log(query.code)
         xhr({
             url: 'https://gatekept-localhost.herokuapp.com/authenticate/' + query.code,
             json: true
@@ -62,6 +63,14 @@ export default Router.extend({
             console.log(err, body);
             app.me.token = body.token;
             console.log(body.token);
+            //this refers to the xhr request, more library magic
+            this.redirectTo('/repos');
         })
+    },
+
+    logout () {
+        console.log('loggin out');
+        window.localStorage.clear();
+        window.location = '/'
     }
 })

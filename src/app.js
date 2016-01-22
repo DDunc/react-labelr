@@ -49,7 +49,7 @@ app.extend({
     }
 });
 
-app.on('local', function(){
+ app.on('local', function(){
     console.log("someone logged in or out", arguments[0]);
 });
 

@@ -20,7 +20,7 @@ export default React.createClass({
                         <li>Labelr</li>
                         <li><a href='/repos'>Repos</a></li>
                         {something}
-                        <li className='pull-right'><a href='/'>Logout</a></li>
+                        <li className='pull-right'><a href='/logout'>Logout</a></li>
                     </ul>
                 </nav>
                 <div className='container'>

@@ -3,8 +3,7 @@ import Model from 'ampersand-model'
 export default Model.extend({
     initialize () {
         this.token = window.localStorage.token;
-        //note: NO SPACES... like... none!
-
+        //note: NO SPACES on change:token ... like... none!
         this.on('change:token', this.onTokenChange); //this is ampersand
         // and backbone way to define a change EE listener.
     },
