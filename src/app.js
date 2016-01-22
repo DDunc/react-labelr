@@ -32,6 +32,7 @@ React.render(React.createElement(Hello, {name: "Duncan"}), document.body) */
 import Router from './router' //relative path, important!
 import styles from './styles/main.styl'
 import app from 'ampersand-app'
+import Me from './models/me'
 
 //if we didn't put it on window, we couldn't get to on teh console.
 window.app = app;
@@ -41,6 +42,7 @@ window.app = app;
 // it directly
 app.extend({
     init() {
+        this.me = new Me(); //setting up a new 'me' model
         this.router = new Router();  //could do new Router({pushState:
         // false}) to not update url bar
         this.router.history.start(); //this makes it grab the browser history

@@ -6,6 +6,7 @@ import xhr from 'xhr'
 import PublicPage from './pages/public'
 import ReposPage from './pages/repos'
 import Layout from './layout.js'
+import app from 'ampersand-app'
 
 
 export default Router.extend({
@@ -58,7 +59,9 @@ export default Router.extend({
             url: 'https://gatekept-localhost.herokuapp.com/authenticate/' + query.code,
             json: true
         }, (err, req, body) => {
-            console.log(err, body)
+            console.log(err, body);
+            app.me.token = body.token;
+            console.log(body.token);
         })
     }
 })
