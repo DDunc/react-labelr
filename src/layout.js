@@ -1,12 +1,20 @@
 import React from 'react'
 import localLinks from 'local-links'
 import NavHelper from './components/nav-helper'
-// TODO I need to finish this tutorial
+import app from 'ampersand-app' //this is their global leakage solution
+//look at mixin docs
+import ampersandMixin from 'ampersand-react-mixin'
 //ampersand does the routes, local-links figures out where in the target it was
 //router.history.navigate... understand how this works
 export default React.createClass({
+    //mixins key is a part of react, mixin is defined in model
+    mixins: [ampersandMixin],
 
     render() {
+        //uses ES6 destructuring to make me's props, creates a local me
+        // reference, easy way to pull props off a component
+        const {me} = this.props
+
         let something;
         if (true){
             something = <li>Foo</li>
@@ -20,7 +28,7 @@ export default React.createClass({
                         <li>Labelr</li>
                         <li><a href='/repos'>Repos</a></li>
                         {something}
-                        <li className='pull-right'><a href='/logout'>Logout</a></li>
+                        <li className='pull-right'><a href='/logout'>Logout</a>{me.login}</li>
                     </ul>
                 </nav>
                 <div className='container'>

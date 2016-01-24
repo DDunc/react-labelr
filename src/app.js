@@ -34,17 +34,20 @@ import styles from './styles/main.styl'
 import app from 'ampersand-app'
 import Me from './models/me'
 
-//if we didn't put it on window, we couldn't get to on teh console.
+//if we didn't put it on window, we couldn't get to on the console.
 window.app = app;
 
 //adding object with method init to ampersand app object through extend method
 //big alert here--extend is method we pass an object to, we're not declaring
 // it directly
+
 app.extend({
     init() {
         this.me = new Me(); //setting up a new 'me' model
+        this.me.fetchInitialData(); //call the method already defined in me
+        // model to get token
         this.router = new Router();  //could do new Router({pushState:
-        // false}) to not update url bar
+        // false}) to not update url bar, it takes options
         this.router.history.start(); //this makes it grab the browser history
     }
 });

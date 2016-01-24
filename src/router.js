@@ -11,8 +11,11 @@ import app from 'ampersand-app'
 
 export default Router.extend({
     renderPage(page, opts = {layout: true}) {
+        //now any time that me changes, it's gonna force an update of layout
         if(opts.layout) {
-            page = (<Layout>{page}</Layout>)
+            page = (<Layout me={app.me}>
+                {page}
+            </Layout>)
         }
         React.render(page, document.body)
     },
