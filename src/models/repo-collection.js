@@ -1,6 +1,7 @@
 import Collection from 'ampersand-rest-collection'
 import Repo from './repo'
 import githubMixin from '../helpers/github-mixin'
+
 //distinct between regular collections with no saving, and collections with
 // rest methods.
 
@@ -16,7 +17,7 @@ export default Collection.extend(githubMixin, {
     initialize () {
         setInterval(() => {
            this.fetch();
-        }, 5000)
+        }, 50000)
     },
 
     url: 'https://api.github.com/user/repos',

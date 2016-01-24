@@ -39,9 +39,9 @@ export default Router.extend({
         console.log(window.location.origin);
 
     },
-
+    //better to define app.me.repos explicitly
     repos() {
-        this.renderPage(<ReposPage/>);
+        this.renderPage(<ReposPage repos={app.me.repos}/>);
         //React.render(<ReposPage/>,
         // document.body);
     },
