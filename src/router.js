@@ -40,6 +40,8 @@ export default Router.extend({
 
     },
     //better to define app.me.repos explicitly
+    //whatever={app.whatever} is a prop, denotes it as dynamic
+    //if it's an actual html understandable object, you use {{}}, doubles.
     repos() {
         this.renderPage(<ReposPage repos={app.me.repos}/>);
         //React.render(<ReposPage/>,
