@@ -1,9 +1,14 @@
 import Model from 'ampersand-model'
+import githubMixin from '../helpers/github-mixin'
+import RepoCollection from './repo-collection'
 
-//FETCH is a backbone method that goes for a URL
+//for in key ID as part of response is typical way to handle it, so a
+// derived property pulls it out of the collection. So put everything as-is
+// in the collection, then pull out what you need.
 
-export default Model.extend({
+export default Model.extend( githubMixin, {
     //using an auth header
+    // FETCH is a backbone method that goes for a URL
     url: 'https://api.github.com/user',
 
     initialize () {
@@ -17,7 +22,7 @@ export default Model.extend({
     // comes back, and then these fields get populated or aliased at top
     // level based on the url. So in this case, the user object.
     //Kinda weird you can do app.me.login, when I would think it would be
-    // app.me.props.login.
+    // app.me.props.login. But the extend is delaing with it differently.
     props: {
         id: 'number',
         login: 'string',
@@ -27,24 +32,33 @@ export default Model.extend({
     session: {
         token: 'string'  //our auth token is here
     },
+    //will always have a this.repos, even if there's not data
+    collections: {
+        repos: RepoCollection
+    },
+
     onTokenChange () {
         console.log("on token change fired");
         window.localStorage.token = this.token;
         this.fetchInitialData();
     },
-    ajaxConfig () {
-        return {
-            headers: {
-                Authorization: 'token ' + this.token
-            }
-        }
-    },
+    //replaced by github-mixin helper
+    //ajaxConfig () {
+    //    return {
+    //        headers: {
+    //            Authorization: 'token ' + this.token
+    //        }
+    //    }
+    //},
     //fetch is part of the model per ampersand. What it does is make an AJAX
     // request using xhr library to the url prop of the model, and set the
     // resulting json to that model.
+    //by default, it uses the key to name the property
+    //if you just call fetch again, it will merge.
     fetchInitialData () {
         if(this.token) {
             this.fetch();
+            this.repos.fetch();
         }
     }
 })
