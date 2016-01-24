@@ -6,5 +6,5 @@
     - React
     - Webpack
     - Isomorphic Rendering
-    - Providing user logins using an OAuth API (Soon!)
+    - Providing user logins using an OAuth API
     - Consuming an external JSON API (Soon!)
