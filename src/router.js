@@ -11,7 +11,11 @@ import app from 'ampersand-app'
 
 export default Router.extend({
     renderPage(page, opts = {layout: true}) {
-        //now any time that me changes, it's gonna force an update of layout
+        //so we're passing me as a prop in layout, and then we access it in
+        // the layout.js file, because the ampersand-react-mixin looks at
+        // all the props being passed in, automatically identifies
+        // models/collections, and starts watching them, then forcing update
+        // on change.
         if(opts.layout) {
             page = (<Layout me={app.me}>
                 {page}

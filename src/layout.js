@@ -1,20 +1,25 @@
 import React from 'react'
 import localLinks from 'local-links'
 import NavHelper from './components/nav-helper'
-import app from 'ampersand-app' //this is their global leakage solution
 //look at mixin docs
 import ampersandMixin from 'ampersand-react-mixin'
 //ampersand does the routes, local-links figures out where in the target it was
 //router.history.navigate... understand how this works
 export default React.createClass({
-    //mixins key is a part of react, mixin is defined in model
+    //mixins key is a part of react
+    //mounting just means added to document
+    // the ampersand mixin itself has component mounting, and it can
+    // autowatch for collections and state objects. check the github for the
+    // mixin. If you give it a model, it will call force update on it.
+    // It becomes aware through ampersand-model, maybe?
+    //the mixin here is good for specifying redraw of one thing
     mixins: [ampersandMixin],
 
     render() {
         //uses ES6 destructuring to make me's props, creates a local me
         // reference, easy way to pull props off a component
+        //ES6 template strings are distinct from these
         const {me} = this.props
-
         let something;
         if (true){
             something = <li>Foo</li>
