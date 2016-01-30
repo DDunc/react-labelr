@@ -27,11 +27,14 @@ export default Collection.extend(githubMixin, {
     getByFullName (fullName) {
         //loops through collection, finds something, otherwise it'll be
         // undefined
-        let model = this.findWhere({full_name: fullName})
+        let model = this.findWhere({full_name: fullName});
 
         if (!model){
-            model = new Repo({full_name: fullName})
+            model = new Repo({full_name: fullName});
         }
+        // https://ampersandjs.com/docs/#ampersand-model-fetch
+        model.fetch();
+
         return model;
     }
 })
