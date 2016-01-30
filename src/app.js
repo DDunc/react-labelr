@@ -33,6 +33,9 @@ import Router from './router' //relative path, important!
 import styles from './styles/main.styl'
 import app from 'ampersand-app'
 import Me from './models/me'
+//class designated in layout got parsed and included from octicons library
+// on npm and was designated in layout. Small svgs are just in-lined.
+import icons from 'octicons/octicons/octicons.css'
 
 //if we didn't put it on window, we couldn't get to on the console.
 window.app = app;

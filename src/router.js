@@ -7,6 +7,7 @@ import PublicPage from './pages/public'
 import ReposPage from './pages/repos'
 import Layout from './layout.js'
 import app from 'ampersand-app'
+import RepoDetail from './pages/repo-detail'
 
 
 export default Router.extend({
@@ -31,6 +32,8 @@ export default Router.extend({
         'repos': 'repos',
         'login': 'login',
         'logout': 'logout',
+        'repo/:owner/:name': 'repoDetail', //router has split apart on
+        // slashes, after colon will be args passed to repoDetail
         'auth/callback?:query': 'authCallback'
     },
 
@@ -46,6 +49,12 @@ export default Router.extend({
         this.renderPage(<ReposPage repos={app.me.repos}/>);
         //React.render(<ReposPage/>,
         // document.body);
+    },
+
+    repoDetail (owner, name){
+        //method added to the collection model
+        const model = app.me.repos.getByFullName(owner + '/' + name);
+        this.renderPage(<RepoDetail repo={model}/>);
     },
 
     login() {

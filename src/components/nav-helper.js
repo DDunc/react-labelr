@@ -22,7 +22,6 @@ export default React.createClass({
             app.router.history.navigate(pathname);
         }
     }, //remember this is a key-value pair inside of an object
-
     render(){
         return (
             <div {...this.props} onClick={this.onClick}>
