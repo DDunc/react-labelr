@@ -29,6 +29,8 @@ React.render(React.createElement(Hello, {name: "Duncan"}), document.body) */
 //
 //React.render(<Hello name="Duncan"/>, document.body);
 
+//need babel polyfills for full ES6 support of Object.assign
+
 import Router from './router' //relative path, important!
 import styles from './styles/main.styl'
 import app from 'ampersand-app'

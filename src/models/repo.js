@@ -1,6 +1,6 @@
 import Model from 'ampersand-model'
 import githubMixin from '../helpers/github-mixin'
-
+import LabelCollection from './label-collection'
 //these are being defined based on the github API.
 //that's a smart idea... naming shit the way the API names it so you can
 // just move them over one-to-one.
@@ -27,5 +27,15 @@ export default Model.extend(githubMixin, {
                 return '/repo/' + this.full_name
             }
         }
+    },
+
+    collections: {
+        labels: LabelCollection
+    },
+    //we're overriding here
+    fetch () {
+        //calling the generic
+        Model.prototype.fetch.apply(this, arguments);
+        this.labels.fetch();
     }
 })

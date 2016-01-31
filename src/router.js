@@ -10,6 +10,7 @@ import app from 'ampersand-app'
 import RepoDetail from './pages/repo-detail'
 
 
+//extend is like underscore extend or ES6 Object.assign.
 export default Router.extend({
     renderPage(page, opts = {layout: true}) {
         //so we're passing me as a prop in layout, and then we access it in
@@ -54,7 +55,7 @@ export default Router.extend({
     repoDetail (owner, name){
         //method added to the collection model
         const model = app.me.repos.getByFullName(owner + '/' + name);
-        this.renderPage(<RepoDetail repo={model}/>);
+        this.renderPage(<RepoDetail repo={model} labels={model.labels}/>);
     },
 
     login() {
